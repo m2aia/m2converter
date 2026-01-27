@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  imzml-converter:
+    build: .
+    image: imzml-to-nrrd:latest
+    volumes:
+      # Mount the kidney_glomerulie directory as input
+      - ./kidney_glomerulie:/input:ro
+      # Mount output directory
+      - ./output:/output
+    # Override the default command to specify the input file
+    # Example: Use 01.imzML from the kidney_glomerulie folder
+    command: ["/input/01.imzML", "--output-dir", "/output"]
+    
+    # Alternatively, you can uncomment below to use custom centroids
+    # command: ["/input/01.imzML", "--output-dir", "/output", "--centroids", "100.5", "200.3", "300.7"]
+    
+    # Or with custom tolerance
+    # command: ["/input/01.imzML", "--output-dir", "/output", "--tolerance", "100"]
