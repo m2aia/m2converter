@@ -18,6 +18,8 @@ help:
 	@echo "  build          - Build the Docker image"
 	@echo "  test           - Run a quick test with spatial output"
 	@echo "  test-all       - Test with all output formats"
+	@echo "  test-no-centroids - Test with spatial output, no centroids (uses file's centroids)"
+	@echo "  test-all-no-centroids - Test all output formats, no centroids (uses file's centroids)"
 	@echo "  clean          - Remove output files"
 	@echo "  push           - Push image to GitHub Container Registry"
 	@echo "  run-spatial    - Process with spatial numpy output"
@@ -48,6 +50,24 @@ test-all: build
 		$(FULL_IMAGE) /input/$(TEST_FILE) \
 		--output-dir /output \
 		--centroids $(TEST_CENTROIDS) \
+		--save-npy-spatial --save-npy-list --save-nrrd
+
+test-no-centroids: build
+	@echo "Running test with spatial output (no centroids - using file's centroids)..."
+	docker run --rm \
+		-v $(PWD)/$(INPUT_DIR):/input:ro \
+		-v $(PWD)/$(OUTPUT_DIR):/output \
+		$(FULL_IMAGE) /input/$(TEST_FILE) \
+		--output-dir /output \
+		--save-npy-spatial
+
+test-all-no-centroids: build
+	@echo "Running test with all output formats (no centroids - using file's centroids)..."
+	docker run --rm \
+		-v $(PWD)/$(INPUT_DIR):/input:ro \
+		-v $(PWD)/$(OUTPUT_DIR):/output \
+		$(FULL_IMAGE) /input/$(TEST_FILE) \
+		--output-dir /output \
 		--save-npy-spatial --save-npy-list --save-nrrd
 
 run-spatial: build
