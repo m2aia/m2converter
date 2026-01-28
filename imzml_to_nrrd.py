@@ -200,6 +200,9 @@ Examples:
             
             if (i + 1) % 10 == 0 or (i + 1) == len(centroids):
                 print(f"  Processed {i + 1}/{len(centroids)}: m/z = {mz:.4f}")
+        except Exception as e:
+            print(f"Warning: Failed to process m/z {mz:.4f}: {str(e)}", file=sys.stderr)
+            continue
     
     # Save numpy arrays if requested
     if args.save_npy_spatial or args.save_npy_list:

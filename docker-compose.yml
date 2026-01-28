@@ -3,7 +3,7 @@ version: '3.8'
 services:
   imzml-converter:
     build: .
-    image: imzml-to-nrrd:latest
+    image: ghcr.io/m2aia/m2converter:latest
     volumes:
       # Mount the kidney_glomerulie directory as input
       - ./kidney_glomerulie:/input:ro
