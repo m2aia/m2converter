@@ -1,4 +1,4 @@
-FROM python:3.12-slim as pym2base
+FROM python:3.12-slim AS pym2base
 
 # Set working directory
 WORKDIR /app
