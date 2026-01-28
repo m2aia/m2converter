@@ -29,7 +29,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Downcase Image Name
-        run: echo "IMAGE_NAME=$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+        # Appending -docker to create a new package and bypass permission issues with the existing one
+        run: echo "IMAGE_NAME=$(echo ${{ github.repository }}-docker | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       # Set up Buildx runner
       - name: Set up Docker Buildx
