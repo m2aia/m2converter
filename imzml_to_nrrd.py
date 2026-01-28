@@ -138,7 +138,7 @@ Examples:
         if "Centroid" in str(spectrum_type):
             # Get centroids from the file's centroid list
             try:
-                centroids = img.GetMeanSpectrum()[0]  # Returns (mz, intensity)
+                centroids = img.GetXAxis()  # Returns (mz, intensity)
                 print(f"Using {len(centroids)} centroids from centroid imzML file")
             except Exception as e:
                 print(f"Error extracting centroids from file: {e}", file=sys.stderr)
