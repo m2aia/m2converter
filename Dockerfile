@@ -47,4 +47,4 @@ ENV PYTHONUNBUFFERED=1
 ENTRYPOINT ["python", "imzml_to_nrrd.py"]
 
 # Default arguments (can be overridden)
-CMD ["/input/input.imzML", "--output-dir", "/output"]
+CMD ["--help"]
